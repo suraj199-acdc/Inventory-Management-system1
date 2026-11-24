@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management - IMS</title>
+    <link rel="stylesheet" href="./customers.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h2>Customer Management</h2>
+    <nav>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./sales.html">Sales</a>
+        <a href="./staff.html">Staff</a>
+        <button id="logoutBtn" type="button">Logout</button>
+    </nav>
+</header>
+
+<main>
+    <div id="message" class="message" role="status"></div>
+
+    <section class="stats">
+        <article class="stat-card">
+            <span>Total Customers</span>
+            <h2 id="totalCustomers">0</h2>
+        </article>
+        <article class="stat-card">
+            <span>Total Purchases</span>
+            <h2 id="totalPurchases">Rs. 0.00</h2>
+        </article>
+        <article class="stat-card">
+            <span>Total Collected</span>
+            <h2 id="totalCollected">Rs. 0.00</h2>
+        </article>
+        <article class="stat-card">
+            <span>Outstanding Due</span>
+            <h2 id="totalDue">Rs. 0.00</h2>
+        </article>
+    </section>
+
+    <section class="panel">
+        <h2 id="formHeading">Add Customer</h2>
+        <form id="customerForm">
+            <input type="hidden" id="customerId">
+
+            <div class="form-grid">
+                <div>
+                    <label for="customerName">Customer Name *</label>
+                    <input id="customerName" type="text" required placeholder="Full name">
+                </div>
+                <div>
+                    <label for="customerContact">Contact Number *</label>
+                    <input id="customerContact" type="text" required placeholder="Phone number">
+                </div>
+                <div>
+                    <label for="customerEmail">Email</label>
+                    <input id="customerEmail" type="email" placeholder="Email address">
+                </div>
+                <div>
+                    <label for="customerAddress">Address</label>
+                    <input id="customerAddress" type="text" placeholder="Customer address">
+                </div>
+            </div>
+
+            <label for="customerNotes">Notes</label>
+            <textarea id="customerNotes" rows="3" placeholder="Additional customer information"></textarea>
+
+            <div class="form-actions">
+                <button type="submit" id="saveCustomerBtn">Save Customer</button>
+                <button type="button" id="cancelEditBtn" class="secondary" hidden>Cancel Edit</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="panel">
+        <h2>Customer Directory</h2>
+
+        <div class="filters">
+            <input id="customerSearch" type="search" placeholder="Search name, phone or email...">
+            <select id="statusFilter">
+                <option value="all">All Customers</option>
+                <option value="due">Customers With Due</option>
+                <option value="paid">Fully Paid</option>
+                <option value="unknown">Legacy / Unknown Balance</option>
+            </select>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Customer</th>
+                        <th>Contact</th>
+                        <th>Purchases</th>
+                        <th>Paid</th>
+                        <th>Outstanding</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="customerTable"></tbody>
+            </table>
+        </div>
+        <p id="emptyMessage" class="empty" hidden>No customers found.</p>
+    </section>
+
+    <section class="panel" id="customerDetailsPanel" hidden>
+        <div class="section-heading">
+            <div>
+                <h2 id="detailsName">Customer Details</h2>
+                <p id="detailsContact"></p>
+            </div>
+            <button type="button" id="closeDetailsBtn" class="secondary">Close</button>
+        </div>
+
+        <div class="detail-stats">
+            <div><span>Purchase Total</span><strong id="detailPurchases">Rs. 0.00</strong></div>
+            <div><span>Paid</span><strong id="detailPaid">Rs. 0.00</strong></div>
+            <div><span>Outstanding</span><strong id="detailDue">Rs. 0.00</strong></div>
+        </div>
+
+        <h3>Record Customer Payment</h3>
+        <form id="paymentForm" class="payment-form">
+            <input type="hidden" id="paymentCustomerId">
+            <div>
+                <label for="paymentAmount">Amount (Rs.)</label>
+                <input type="number" id="paymentAmount" min="0.01" step="0.01" required>
+            </div>
+            <div>
+                <label for="paymentDate">Payment Date</label>
+                <input type="date" id="paymentDate" required>
+            </div>
+            <div>
+                <label for="customerPaymentMethod">Payment Method</label>
+                <select id="customerPaymentMethod" required>
+                    <option>Cash</option>
+                    <option>Card</option>
+                    <option>Mobile Payment</option>
+                    <option>Bank Transfer</option>
+                </select>
+            </div>
+            <div>
+                <label for="paymentReference">Reference / Note</label>
+                <input type="text" id="paymentReference" placeholder="Optional reference">
+            </div>
+            <button type="submit">Save Payment</button>
+        </form>
+
+        <h3>Purchase History</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Transaction</th>
+                        <th>Date</th>
+                        <th>Sale Total</th>
+                        <th>Paid at Sale</th>
+                        <th>Remaining Due</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="purchaseHistory"></tbody>
+            </table>
+        </div>
+
+        <h3>Payment History</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Method</th>
+                        <th>Reference</th>
+                    </tr>
+                </thead>
+                <tbody id="paymentHistory"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<script src="./customers.js"></script>
+</body>
+</html>

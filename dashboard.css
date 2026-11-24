@@ -1,0 +1,318 @@
+
+/* ==================================
+   GENERAL
+================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #667eea,
+        #764ba2,
+        #42a5f5,
+        #7b1fa2
+    );
+
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+/* ==================================
+   HEADER
+================================== */
+
+header {
+    background: rgba(0,0,0,0.2);
+    backdrop-filter: blur(8px);
+
+    padding: 20px 50px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h2 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.logout-btn {
+    background: #ff5252;
+    color: white;
+
+    padding: 12px 22px;
+
+    border: none;
+    border-radius: 10px;
+
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #ff1744;
+    transform: scale(1.05);
+}
+
+/* ==================================
+   LOW STOCK ALERT
+================================== */
+
+.low-stock-bar {
+    width: 95%;
+    max-width: 900px;
+
+    margin: 25px auto 0;
+    padding: 18px 25px;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.low {
+    background: rgba(255,0,0,0.2);
+    border-left: 6px solid red;
+
+    animation: pulse 1.5s infinite;
+}
+
+.safe {
+    background: rgba(0,255,120,0.2);
+    border-left: 6px solid #00e676;
+}
+
+.stock-icon {
+    font-size: 28px;
+}
+
+.low-text {
+    font-size: 1rem;
+}
+
+/* ==================================
+   STATISTICS
+================================== */
+
+.stats-container {
+    width: 95%;
+    max-width: 1100px;
+
+    margin: 30px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.stat-card {
+    background: rgba(255,255,255,0.15);
+
+    backdrop-filter: blur(12px);
+
+    border-radius: 15px;
+    padding: 22px 12px;
+
+    text-align: center;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.stat-card span {
+    font-size: 30px;
+}
+
+.stat-card h3 {
+    margin: 12px 0;
+    font-size: 15px;
+}
+
+.stat-card p {
+    font-size: 22px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+}
+
+/* ==================================
+   DASHBOARD MENU
+================================== */
+
+.container {
+    width: 95%;
+    max-width: 900px;
+
+    margin: 35px auto;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+}
+
+.card {
+    background: rgba(255,255,255,0.15);
+
+    backdrop-filter: blur(12px);
+
+    border-radius: 20px;
+    padding: 30px 15px;
+
+    text-align: center;
+    text-decoration: none;
+    color: white;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+
+    transition: 0.4s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.card span {
+    font-size: 45px;
+    display: block;
+
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+.card p {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.04);
+    background: rgba(255,255,255,0.25);
+}
+
+/* ==================================
+   FOOTER
+================================== */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+}
+
+/* ==================================
+   ANIMATIONS
+================================== */
+
+@keyframes floatIcon {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ==================================
+   RESPONSIVE DESIGN
+================================== */
+
+@media(max-width: 850px) {
+
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 600px) {
+
+    header {
+        padding: 18px 15px;
+    }
+
+    header h2 {
+        font-size: 17px;
+    }
+
+    .logout-btn {
+        padding: 10px 13px;
+        font-size: 12px;
+    }
+
+    .container {
+        gap: 15px;
+    }
+
+    .card {
+        padding: 25px 10px;
+    }
+
+    .card span {
+        font-size: 35px;
+    }
+
+    .card p {
+        font-size: 14px;
+    }
+
+    .stat-card h3 {
+        font-size: 13px;
+    }
+
+    .stat-card p {
+        font-size: 18px;
+    }
+}

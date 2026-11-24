@@ -1,0 +1,462 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Purchase Management | IMS</title>
+
+    <link rel="stylesheet" href="./purchase.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+
+        <h2>🛒 Purchase Management</h2>
+
+        <div class="buttons">
+
+            <button
+                class="btn low-btn"
+                id="lowStockButton"
+                type="button"
+            >
+                ⚠ Low Stock
+            </button>
+
+            <a href="./suppliers.html" class="btn supplier-btn">
+                🏪 Suppliers
+            </a>
+
+            <a href="./inventory.html" class="btn inventory-btn">
+                📦 Inventory
+            </a>
+
+            <a href="./dashboard.html" class="btn dashboard-btn">
+                ⬅ Dashboard
+            </a>
+
+            <button
+                class="btn logout-btn"
+                type="button"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- LOW STOCK ALERT -->
+        <section class="alert-box" id="alertBox" hidden>
+
+            <h3>⚠ Low Stock Products</h3>
+
+            <div
+                class="low-stock-container"
+                id="lowStockContainer"
+            ></div>
+
+            <p id="noLowStock" hidden>
+                All products have sufficient stock.
+            </p>
+
+        </section>
+
+
+        <!-- MESSAGE -->
+        <div
+            class="message"
+            id="message"
+            role="status"
+            aria-live="polite"
+        ></div>
+
+
+        <!-- PURCHASE FORM -->
+        <section class="form-container">
+
+            <h2>Record New Purchase</h2>
+
+            <p class="form-description">
+                Select a registered supplier, add products, and record the purchase payment.
+            </p>
+
+
+            <form id="purchaseForm">
+
+                <!-- PRODUCT DETAILS -->
+                <h3>📦 Product Details</h3>
+
+                <div id="productContainer">
+
+                    <div class="product-row">
+
+                        <select
+                            class="product-select"
+                            required
+                        >
+                            <option value="">
+                                -- Select Product --
+                            </option>
+                        </select>
+
+                        <input
+                            type="number"
+                            class="quantity-input"
+                            placeholder="Quantity"
+                            min="1"
+                            step="1"
+                            required
+                        >
+
+                        <input
+                            type="number"
+                            class="price-input"
+                            placeholder="Unit Cost (Rs.)"
+                            min="0"
+                            step="0.01"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="remove-btn"
+                            title="Remove product"
+                            aria-label="Remove product"
+                            disabled
+                        >
+                            ❌
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="add-btn"
+                    id="addProductButton"
+                >
+                    ➕ Add Product
+                </button>
+
+
+                <!-- PURCHASE TOTAL -->
+                <div class="purchase-total">
+
+                    <span>Purchase Total</span>
+
+                    <strong>
+                        Rs. <span id="totalAmount">0.00</span>
+                    </strong>
+
+                </div>
+
+
+                <!-- SUPPLIER DETAILS -->
+                <h3>🏪 Supplier Details</h3>
+
+                <div class="supplier-selection">
+
+                    <label for="supplierSelect">
+                        Select Registered Supplier *
+                    </label>
+
+                    <select
+                        id="supplierSelect"
+                        required
+                    >
+                        <option value="">
+                            -- Select Supplier --
+                        </option>
+                    </select>
+
+                    <p class="supplier-help">
+                        Only active registered suppliers can be selected.
+                    </p>
+
+                </div>
+
+
+                <!-- AUTOMATIC SUPPLIER INFORMATION -->
+                <div
+                    class="supplier-preview"
+                    id="supplierPreview"
+                    hidden
+                >
+
+                    <div class="supplier-preview-heading">
+
+                        <h4>✅ Supplier Information</h4>
+
+                        <span class="supplier-connected">
+                            Connected
+                        </span>
+
+                    </div>
+
+
+                    <div class="supplier-information">
+
+                        <div class="supplier-info-item">
+
+                            <span>Contact Person</span>
+
+                            <strong id="supplierContact">-</strong>
+
+                        </div>
+
+
+                        <div class="supplier-info-item">
+
+                            <span>Phone Number</span>
+
+                            <strong id="supplierPhoneDisplay">-</strong>
+
+                        </div>
+
+
+                        <div class="supplier-info-item">
+
+                            <span>Email Address</span>
+
+                            <strong id="supplierEmailDisplay">-</strong>
+
+                        </div>
+
+
+                        <div class="supplier-info-item">
+
+                            <span>Address</span>
+
+                            <strong id="supplierAddressDisplay">-</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <p class="supplier-link">
+
+                    Supplier not registered?
+
+                    <a href="./suppliers.html">
+                        Register New Supplier
+                    </a>
+
+                </p>
+
+
+                <!-- PAYMENT DETAILS -->
+                <h3>💳 Payment Details</h3>
+
+
+                <label for="paymentMethod">
+                    Payment Method *
+                </label>
+
+                <select
+                    id="paymentMethod"
+                    required
+                >
+
+                    <option value="">
+                        -- Select Payment Method --
+                    </option>
+
+                    <option value="Cash">Cash</option>
+
+                    <option value="eSewa">eSewa</option>
+
+                    <option value="Khalti">Khalti</option>
+
+                    <option value="Bank Transfer">
+                        Bank Transfer
+                    </option>
+
+                </select>
+
+
+                <label for="amountPaid">
+                    Amount Paid (Rs.) *
+                </label>
+
+                <input
+                    type="number"
+                    id="amountPaid"
+                    placeholder="Enter amount paid"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                    required
+                >
+
+
+                <!-- PAYMENT SUMMARY -->
+                <div class="payment-summary">
+
+                    <h3>📊 Purchase Payment Summary</h3>
+
+
+                    <div class="summary-row">
+
+                        <span>Total Purchase Amount</span>
+
+                        <strong>
+                            Rs. <span id="purchaseGrandTotal">0.00</span>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Amount Paid</span>
+
+                        <strong>
+                            Rs. <span id="purchasePaidDisplay">0.00</span>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row due-row">
+
+                        <span>Outstanding Due</span>
+
+                        <strong>
+                            Rs. <span id="purchaseDueDisplay">0.00</span>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row status-row">
+
+                        <span>Payment Status</span>
+
+                        <strong id="purchasePaymentStatus">
+                            Unpaid
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUBMIT PURCHASE -->
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    ✅ Record Purchase
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- PURCHASE HISTORY -->
+        <section class="records-section">
+
+            <h2>📋 Recent Purchases</h2>
+
+            <p class="records-description">
+                All recorded purchases and their linked supplier information.
+            </p>
+
+
+            <!-- SEARCH -->
+            <input
+                type="search"
+                id="purchaseSearch"
+                class="search-input"
+                placeholder="Search purchase ID, product or supplier..."
+            >
+
+
+            <!-- PURCHASE TABLE -->
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>No.</th>
+
+                            <th>Purchase ID</th>
+
+                            <th>Product</th>
+
+                            <th>Supplier</th>
+
+                            <th>Image</th>
+
+                            <th>Quantity</th>
+
+                            <th>Unit Cost</th>
+
+                            <th>Total</th>
+
+                            <th>Payment Method</th>
+
+                            <th>Status</th>
+
+                            <th>Paid</th>
+
+                            <th>Due</th>
+
+                            <th>Date</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="purchaseTable">
+
+                        <!-- Purchase records loaded by purchase.js -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <p
+                id="emptyMessage"
+                class="empty-message"
+                hidden
+            >
+                No purchase records found.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- PURCHASE JAVASCRIPT -->
+    <script src="./purchase.js"></script>
+
+</body>
+
+</html>

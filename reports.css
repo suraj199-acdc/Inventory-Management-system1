@@ -1,0 +1,506 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2, #42a5f5, #7b1fa2);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+    color: white;
+}
+
+header {
+    background: rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(12px);
+    padding: 20px 4%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+header h2 {
+    font-size: 25px;
+}
+
+.header-subtitle {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-top: 4px;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.btn {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.dashboard-btn {
+    background: #ffeb3b;
+    color: #333;
+}
+
+.export-btn {
+    background: #17a2b8;
+    color: white;
+}
+
+.print-btn {
+    background: #28a745;
+    color: white;
+}
+
+.logout-btn {
+    background: #dc3545;
+    color: white;
+}
+
+main {
+    width: 95%;
+    max-width: 1600px;
+    margin: 25px auto;
+}
+
+.report-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.report-intro h1 {
+    font-size: 30px;
+}
+
+.report-intro p {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 5px;
+}
+
+.report-date {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.filter-box {
+    background: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 14px;
+    margin-bottom: 25px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    flex: 1;
+    min-width: 145px;
+}
+
+.filter-group label {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background: white;
+    color: #333;
+    min-height: 42px;
+}
+
+.search-group {
+    min-width: 190px;
+}
+
+.filter-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.filter-btn {
+    background: #2196f3;
+    color: white;
+}
+
+.reset-btn {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px;
+    margin: 25px 0;
+}
+
+.card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 17px;
+    padding: 22px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.card-icon {
+    font-size: 25px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.card h2 {
+    font-size: 23px;
+    margin: 8px 0;
+    overflow-wrap: anywhere;
+}
+
+.card p {
+    font-size: 10px;
+    opacity: 0.75;
+}
+
+.accounting-note {
+    background: rgba(255, 235, 59, 0.17);
+    border-left: 4px solid #ffeb3b;
+    border-radius: 8px;
+    padding: 14px 17px;
+    margin: 20px 0;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.report-section {
+    margin: 35px 0;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.section-heading h2 {
+    font-size: 22px;
+}
+
+.section-heading p {
+    font-size: 11px;
+    opacity: 0.8;
+    margin-top: 4px;
+}
+
+.section-tag {
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    padding: 7px 13px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+}
+
+th {
+    background: rgba(0, 0, 0, 0.35);
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+td {
+    font-size: 11px;
+}
+
+th, td {
+    padding: 13px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+tr:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.product-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.low-stock,
+.available,
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.low-stock {
+    background: #dc3545;
+    color: white;
+}
+
+.available {
+    background: #28a745;
+    color: white;
+}
+
+.status-badge {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.empty-message {
+    padding: 25px;
+    text-align: center;
+    opacity: 0.85;
+}
+
+.expense-breakdown {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 20px;
+    border-radius: 13px;
+}
+
+.expense-item {
+    margin: 15px 0;
+}
+
+.expense-item-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 12px;
+    margin-bottom: 7px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 9px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #ffeb3b;
+    border-radius: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px 10px;
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@media (max-width: 850px) {
+    header {
+        padding: 18px;
+    }
+
+    header h2 {
+        font-size: 21px;
+    }
+
+    .buttons {
+        width: 100%;
+    }
+
+    .report-intro h1 {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        width: 92%;
+    }
+
+    .buttons .btn {
+        flex: 1 1 auto;
+    }
+
+    .filter-box {
+        padding: 15px;
+    }
+
+    .filter-group {
+        min-width: 100%;
+    }
+
+    .filter-actions {
+        width: 100%;
+    }
+
+    .filter-actions .btn {
+        flex: 1;
+    }
+
+    .section-heading h2 {
+        font-size: 18px;
+    }
+
+    .card h2 {
+        font-size: 21px;
+    }
+}
+
+@media print {
+    @page {
+        size: landscape;
+        margin: 12mm;
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+        animation: none;
+    }
+
+    header {
+        background: white;
+        color: black;
+        padding: 10px 0;
+    }
+
+    header .buttons,
+    .filter-box {
+        display: none !important;
+    }
+
+    main {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+    }
+
+    .report-intro,
+    .card,
+    .report-section,
+    .expense-breakdown {
+        color: black;
+        background: white !important;
+        backdrop-filter: none;
+        box-shadow: none;
+        border: 1px solid #ddd;
+        break-inside: avoid;
+    }
+
+    .card {
+        padding: 12px;
+    }
+
+    .card h2,
+    .card h3,
+    .card p,
+    .section-heading h2,
+    .section-heading p,
+    .report-intro h1,
+    .report-intro p,
+    footer,
+    .accounting-note {
+        color: black !important;
+    }
+
+    .table-container {
+        overflow: visible;
+    }
+
+    table {
+        min-width: 0;
+        color: black;
+        background: white;
+    }
+
+    th {
+        background: #ddd !important;
+        color: black;
+    }
+
+    td {
+        color: black;
+    }
+
+    .section-tag {
+        color: black;
+        background: #eee;
+    }
+
+    .accounting-note {
+        background: #fff9db !important;
+        border: 1px solid #ddd;
+    }
+}

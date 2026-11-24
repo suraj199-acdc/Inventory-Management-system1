@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports | Inventory Management System</title>
+    <link rel="stylesheet" href="reports.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div>
+        <h2>IMS Reports & Analytics</h2>
+        <p class="header-subtitle">Business performance and accounting overview</p>
+    </div>
+    <div class="buttons">
+        <a href="dashboard.html" class="btn dashboard-btn">← Dashboard</a>
+        <button type="button" class="btn export-btn" id="csvBtn">Export CSV</button>
+        <button type="button" class="btn export-btn" id="pdfBtn">Export PDF</button>
+        <button type="button" class="btn export-btn" id="jpgBtn">Export JPG</button>
+        <button type="button" class="btn print-btn" onclick="window.print()">Print</button>
+        <button type="button" class="btn logout-btn" onclick="logout()">Logout</button>
+    </div>
+</header>
+
+<main id="reportContent">
+    <section class="report-intro">
+        <div>
+            <h1>Business Reports</h1>
+            <p>Review sales, purchases, expenses, stock and financial performance.</p>
+        </div>
+        <div class="report-date" id="generatedDate"></div>
+    </section>
+
+    <section class="filter-box">
+        <div class="filter-group">
+            <label for="reportType">Report Type</label>
+            <select id="reportType">
+                <option value="sales">Sales Reports</option>
+                <option value="purchases">Purchase Reports</option>
+                <option value="expenses">Expense Reports</option>
+                <option value="profit">Profit & Loss</option>
+                <option value="inventory">Inventory Reports</option>
+                <option value="lowstock">Low Stock Reports</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="periodFilter">Quick Period</label>
+            <select id="periodFilter">
+                <option value="all">All Time</option>
+                <option value="today">Today</option>
+                <option value="yesterday">Yesterday</option>
+                <option value="week">Last 7 Days</option>
+                <option value="month">This Month</option>
+                <option value="year">This Year</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate">
+        </div>
+        <div class="filter-group">
+            <label for="endDate">End Date</label>
+            <input type="date" id="endDate">
+        </div>
+        <div class="filter-group search-group">
+            <label for="search">Search</label>
+            <input type="text" id="search" placeholder="Product, customer, supplier...">
+        </div>
+        <div class="filter-actions">
+            <button type="button" class="btn filter-btn" id="filterBtn">Apply Filters</button>
+            <button type="button" class="btn reset-btn" id="resetBtn">Reset</button>
+        </div>
+    </section>
+
+    <section class="cards">
+        <article class="card">
+            <span class="card-icon">💰</span>
+            <h3>Total Sales</h3>
+            <h2 id="totalSales">Rs 0.00</h2>
+            <p>Recorded sales revenue</p>
+        </article>
+        <article class="card">
+            <span class="card-icon">📦</span>
+            <h3>Total Purchases</h3>
+            <h2 id="totalPurchases">Rs 0.00</h2>
+            <p>Recorded inventory purchases</p>
+        </article>
+        <article class="card">
+            <span class="card-icon">🧾</span>
+            <h3>Total Expenses</h3>
+            <h2 id="totalExpenses">Rs 0.00</h2>
+            <p>Operating expenses</p>
+        </article>
+        <article class="card">
+            <span class="card-icon">📈</span>
+            <h3>Gross Profit</h3>
+            <h2 id="grossProfit">N/A</h2>
+            <p>Sales less cost of goods sold</p>
+        </article>
+        <article class="card">
+            <span class="card-icon">💹</span>
+            <h3>Net Profit</h3>
+            <h2 id="netProfit">N/A</h2>
+            <p>Gross profit less expenses</p>
+        </article>
+        <article class="card">
+            <span class="card-icon">🏷️</span>
+            <h3>Total Products</h3>
+            <h2 id="totalProducts">0</h2>
+            <p>Products in inventory</p>
+        </article>
+        <article class="card">
+            <span class="card-icon">⚠️</span>
+            <h3>Low Stock Items</h3>
+            <h2 id="lowStockCount">0</h2>
+            <p>Quantity at or below 5</p>
+        </article>
+        <article class="card">
+            <span class="card-icon">👥</span>
+            <h3>Total Customers</h3>
+            <h2 id="totalCustomers">0</h2>
+            <p>Unique recorded customers</p>
+        </article>
+    </section>
+
+    <section class="accounting-note" id="accountingNote">
+        Profit calculations require a reliable cost price for every sold item.
+    </section>
+
+    <section class="report-section">
+        <div class="section-heading">
+            <div>
+                <h2 id="reportTitle">Sales Reports</h2>
+                <p id="recordCount">0 records found</p>
+            </div>
+            <span class="section-tag" id="reportTag">SALES</span>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead id="reportHead"></thead>
+                <tbody id="reportBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="report-section" id="topProductsSection">
+        <div class="section-heading">
+            <div>
+                <h2>Top Selling Products</h2>
+                <p>Products ranked by total quantity sold</p>
+            </div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Product</th>
+                        <th>Quantity Sold</th>
+                        <th>Total Revenue</th>
+                    </tr>
+                </thead>
+                <tbody id="topProductsBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="report-section" id="expenseBreakdownSection">
+        <div class="section-heading">
+            <div>
+                <h2>Expense Breakdown</h2>
+                <p>Operating expenses grouped by category</p>
+            </div>
+        </div>
+        <div class="expense-breakdown" id="expenseBreakdown">
+            <p class="empty-message">No expense records available.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Inventory Management System | Reports & Analytics</p>
+        <p>Generated on <span id="footerDate"></span></p>
+    </footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="reports.js"></script>
+</body>
+</html>

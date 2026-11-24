@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Profile</title>
+    <link rel="stylesheet" href="manage-profile.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Manage Profile</h2>
+
+        <div id="message" class="message"></div>
+
+        <div class="details">
+            <strong>Current Details:</strong>
+            <p>ID: <span id="adminId">-</span></p>
+            <p>Name: <span id="currentName">-</span></p>
+            <p>Email: <span id="currentEmail">-</span></p>
+            <p>Phone: <span id="currentPhone">-</span></p>
+            <p>Created At: <span id="createdAt">-</span></p>
+        </div>
+
+        <form idS="profileForm">
+            <input
+                type="text"
+                id="name"
+                placeholder="Name"
+                requiredS
+            >
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                required
+            >
+
+            <input
+                type="text"
+                id="phone"
+                placeholder="Phone"
+            >
+
+            <hr>
+
+            <strong>Change Password (Optional)</strong>
+
+            <input
+                type="password"
+                id="currentPassword"
+                placeholder="Current Password"
+                autocomplete="current-password"
+            >
+
+            <input
+                type="password"
+                id="newPassword"
+                placeholder="New Password"
+                autocomplete="new-password"
+            >
+
+            <button type="submit" class="update-btn">
+                Update Profile
+            </button>
+        </form>
+
+        <a href="dashboard.html" class="back-btn">
+            ⬅ Back to Dashboard
+        </a>
+    </div>
+
+    <script src="manage-profile.js"></script>
+</body>
+</html>

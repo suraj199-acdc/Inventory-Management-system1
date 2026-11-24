@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Product | IMS</title>
+
+    <link rel="stylesheet" href="./add_product.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Add Product</h2>
+
+        <!-- SUCCESS AND ERROR MESSAGES -->
+
+        <div id="successMessage" class="success-msg"></div>
+        <div id="errorMessage" class="error-msg"></div>
+
+        <!-- ADD PRODUCT FORM -->
+
+        <form id="productForm">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Product Name"
+                maxlength="100"
+                required
+            >
+
+            <input
+                type="number"
+                id="price"
+                placeholder="Price (Rs.)"
+                min="0"
+                step="0.01"
+                required
+            >
+
+            <input
+                type="number"
+                id="quantity"
+                placeholder="Quantity"
+                min="0"
+                step="1"
+                required
+            >
+
+            <input
+                type="text"
+                id="department"
+                placeholder="Department"
+                maxlength="100"
+                required
+            >
+
+            <input
+                type="text"
+                id="category"
+                placeholder="Category"
+                maxlength="100"
+                required
+            >
+
+            <textarea
+                id="description"
+                placeholder="Product Description"
+                rows="4"
+                maxlength="1000"
+            ></textarea>
+
+            <!-- IMAGE UPLOAD -->
+
+            <label for="image">
+                Product Image:
+            </label>
+
+            <input
+                type="file"
+                id="image"
+                accept="image/*"
+            >
+
+            <img
+                id="imgPreview"
+                class="image-preview"
+                alt="Product image preview"
+            >
+
+            <!-- ADD BUTTON -->
+
+            <button type="submit" id="addButton">
+                Add Product
+            </button>
+
+        </form>
+
+        <!-- BACK BUTTON -->
+
+        <button
+            class="back-btn"
+            type="button"
+            onclick="location.href='./dashboard.html'"
+        >
+            ⬅ Back to Dashboard
+        </button>
+
+        <button
+            class="inventory-btn"
+            type="button"
+            onclick="location.href='./inventory.html'"
+        >
+            View Inventory
+        </button>
+
+    </div>
+
+    <script src="./add_product.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management - IMS</title>
+    <link rel="stylesheet" href="./staff.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h2>Staff Management</h2>
+    <nav>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./customers.html">Customers</a>
+        <a href="./expenses.html">Expenses</a>
+        <button id="logoutBtn" type="button">Logout</button>
+    </nav>
+</header>
+
+<main>
+    <div id="message" class="message" role="status"></div>
+
+    <section class="stats">
+        <article class="stat-card"><span>Total Staff</span><h2 id="totalStaff">0</h2></article>
+        <article class="stat-card"><span>Active Staff</span><h2 id="activeStaff">0</h2></article>
+        <article class="stat-card"><span>Monthly Basic Payroll</span><h2 id="monthlyPayroll">Rs. 0.00</h2></article>
+        <article class="stat-card"><span>Salary Outstanding</span><h2 id="salaryOutstanding">Rs. 0.00</h2></article>
+    </section>
+
+    <section class="panel">
+        <h2 id="staffFormHeading">Add Staff Member</h2>
+        <form id="staffForm">
+            <input type="hidden" id="staffId">
+
+            <div class="form-grid">
+                <div>
+                    <label for="staffName">Full Name *</label>
+                    <input id="staffName" type="text" required placeholder="Employee name">
+                </div>
+                <div>
+                    <label for="staffContact">Contact Number *</label>
+                    <input id="staffContact" type="text" required placeholder="Phone number">
+                </div>
+                <div>
+                    <label for="staffEmail">Email</label>
+                    <input id="staffEmail" type="email" placeholder="Email address">
+                </div>
+                <div>
+                    <label for="staffRole">Job Role *</label>
+                    <input id="staffRole" type="text" required placeholder="e.g. Sales Assistant">
+                </div>
+                <div>
+                    <label for="staffDepartment">Department</label>
+                    <input id="staffDepartment" type="text" placeholder="e.g. Sales">
+                </div>
+                <div>
+                    <label for="joiningDate">Joining Date *</label>
+                    <input id="joiningDate" type="date" required>
+                </div>
+                <div>
+                    <label for="basicSalary">Basic Monthly Salary (Rs.) *</label>
+                    <input id="basicSalary" type="number" min="0" step="0.01" required>
+                </div>
+                <div>
+                    <label for="staffStatus">Employment Status</label>
+                    <select id="staffStatus">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+            </div>
+
+            <label for="staffAddress">Address</label>
+            <textarea id="staffAddress" rows="2" placeholder="Employee address"></textarea>
+
+            <div class="form-actions">
+                <button type="submit" id="saveStaffBtn">Save Staff</button>
+                <button type="button" id="cancelStaffEdit" class="secondary" hidden>Cancel</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="panel">
+        <h2>Staff Directory</h2>
+        <input id="staffSearch" type="search" placeholder="Search staff by name, role or contact...">
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th><th>Name</th><th>Contact</th><th>Role</th>
+                        <th>Department</th><th>Basic Salary</th><th>Status</th><th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="staffTable"></tbody>
+            </table>
+        </div>
+        <p id="staffEmpty" class="empty" hidden>No staff members found.</p>
+    </section>
+
+    <section class="panel">
+        <h2>Attendance Management</h2>
+        <form id="attendanceForm" class="inline-form">
+            <div>
+                <label for="attendanceStaff">Staff Member</label>
+                <select id="attendanceStaff" required></select>
+            </div>
+            <div>
+                <label for="attendanceDate">Date</label>
+                <input id="attendanceDate" type="date" required>
+            </div>
+            <div>
+                <label for="attendanceStatus">Status</label>
+                <select id="attendanceStatus">
+                    <option value="Present">Present</option>
+                    <option value="Absent">Absent</option>
+                    <option value="Late">Late</option>
+                    <option value="Leave">Leave</option>
+                    <option value="Half Day">Half Day</option>
+                </select>
+            </div>
+            <div>
+                <label for="attendanceHours">Overtime Hours</label>
+                <input id="attendanceHours" type="number" min="0" step="0.5" value="0">
+            </div>
+            <button type="submit">Save Attendance</button>
+        </form>
+
+        <div class="filters">
+            <input id="attendanceMonth" type="month">
+            <select id="attendanceStaffFilter"></select>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr><th>Date</th><th>Staff</th><th>Status</th><th>Overtime Hours</th><th>Action</th></tr>
+                </thead>
+                <tbody id="attendanceTable"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Monthly Salary Calculator</h2>
+        <p class="hint">Calculate gross salary, overtime, deductions, and net salary before creating a payroll record.</p>
+
+        <form id="payrollForm">
+            <div class="form-grid">
+                <div>
+                    <label for="payrollStaff">Staff Member</label>
+                    <select id="payrollStaff" required></select>
+                </div>
+                <div>
+                    <label for="payrollMonth">Salary Month</label>
+                    <input id="payrollMonth" type="month" required>
+                </div>
+                <div>
+                    <label for="salaryAllowance">Allowances (Rs.)</label>
+                    <input id="salaryAllowance" type="number" min="0" step="0.01" value="0">
+                </div>
+                <div>
+                    <label for="overtimeHours">Overtime Hours</label>
+                    <input id="overtimeHours" type="number" min="0" step="0.5" value="0">
+                </div>
+                <div>
+                    <label for="overtimeRate">Overtime Rate Per Hour (Rs.)</label>
+                    <input id="overtimeRate" type="number" min="0" step="0.01" value="0">
+                </div>
+                <div>
+                    <label for="salaryDeduction">Other Deductions (Rs.)</label>
+                    <input id="salaryDeduction" type="number" min="0" step="0.01" value="0">
+                </div>
+            </div>
+
+            <div class="calculator-result">
+                <div><span>Basic Salary</span><strong id="calcBasic">Rs. 0.00</strong></div>
+                <div><span>Allowances</span><strong id="calcAllowance">Rs. 0.00</strong></div>
+                <div><span>Overtime Pay</span><strong id="calcOvertime">Rs. 0.00</strong></div>
+                <div><span>Deductions</span><strong id="calcDeduction">Rs. 0.00</strong></div>
+                <div class="net-result"><span>Net Salary</span><strong id="calcNet">Rs. 0.00</strong></div>
+            </div>
+
+            <button type="submit">Generate Payroll</button>
+        </form>
+    </section>
+
+    <section class="panel">
+        <h2>Payroll & Salary Payments</h2>
+        <div class="filters">
+            <input id="payrollSearch" type="search" placeholder="Search employee or month...">
+            <select id="payrollStatusFilter">
+                <option value="all">All Payroll</option>
+                <option value="Paid">Paid</option>
+                <option value="Partial">Partially Paid</option>
+                <option value="Unpaid">Unpaid</option>
+            </select>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Employee</th><th>Month</th><th>Basic</th><th>Allowance</th>
+                        <th>Overtime</th><th>Deductions</th><th>Net Salary</th>
+                        <th>Paid</th><th>Due</th><th>Status</th><th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="payrollTable"></tbody>
+            </table>
+        </div>
+        <p id="payrollEmpty" class="empty" hidden>No payroll records found.</p>
+    </section>
+</main>
+
+<script src="./staff.js"></script>
+</body>
+</html>

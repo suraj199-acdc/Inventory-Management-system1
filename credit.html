@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Credit & Payment Manager | IMS</title>
+
+    <link rel="stylesheet" href="credit.css">
+</head>
+
+<body>
+
+<header>
+    <h2>💰 Credit / Purchase</h2>
+
+    <div class="header-buttons">
+        <a href="dashboard.html" class="back-btn">
+            ⬅ Dashboard
+        </a>
+
+        <button onclick="logout()" class="logout-btn">
+            Logout
+        </button>
+    </div>
+</header>
+
+<div id="message" class="msg"></div>
+
+<div class="summary">
+
+    <div class="summary-card">
+        <h3>Total Purchases</h3>
+        <h2 id="totalPurchases">Rs 0.00</h2>
+    </div>
+
+    <div class="summary-card">
+        <h3>Total Paid</h3>
+        <h2 id="totalPaid">Rs 0.00</h2>
+    </div>
+
+    <div class="summary-card">
+        <h3>Total Due</h3>
+        <h2 id="totalDue">Rs 0.00</h2>
+    </div>
+
+    <div class="summary-card">
+        <h3>Credit Purchases</h3>
+        <h2 id="creditCount">0</h2>
+    </div>
+
+</div>
+
+<div class="table-container">
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Vendor</th>
+                <th>Payment Method</th>
+                <th>Status</th>
+                <th>Paid</th>
+                <th>Due</th>
+                <th>Edit Full Details</th>
+            </tr>
+        </thead>
+
+        <tbody id="purchaseTable">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script src="credit.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,517 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Supplier Management | IMS</title>
+
+    <link rel="stylesheet" href="./supplier.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="main-header">
+
+        <div class="header-title">
+            <h2>🏪 Supplier Management</h2>
+            <p>Manage suppliers and track purchase payments</p>
+        </div>
+
+        <div class="header-buttons">
+
+            <a href="./purchase.html" class="header-btn">
+                🛒 Purchases
+            </a>
+
+            <a href="./inventory.html" class="header-btn">
+                📦 Inventory
+            </a>
+
+            <a href="./dashboard.html" class="header-btn">
+                ⬅ Dashboard
+            </a>
+
+            <button
+                type="button"
+                class="header-btn logout-btn"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="page-container">
+
+        <!-- NOTIFICATION -->
+        <div
+            id="message"
+            class="message"
+            role="status"
+            aria-live="polite"
+        ></div>
+
+
+        <!-- SUPPLIER STATISTICS -->
+        <section class="statistics-section">
+
+            <div class="stat-card">
+                <div class="stat-icon">🏪</div>
+
+                <div>
+                    <p>Total Suppliers</p>
+                    <h2 id="totalSuppliers">0</h2>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+
+                <div>
+                    <p>Active Suppliers</p>
+                    <h2 id="activeSuppliers">0</h2>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+
+                <div>
+                    <p>Total Purchases</p>
+                    <h2 id="totalSupplierPurchases">Rs. 0.00</h2>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon">⚠️</div>
+
+                <div>
+                    <p>Outstanding Due</p>
+                    <h2 id="totalSupplierDue">Rs. 0.00</h2>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ADD SUPPLIER FORM -->
+        <section class="form-section">
+
+            <div class="section-heading">
+                <h2 id="formTitle">➕ Register New Supplier</h2>
+
+                <p>
+                    Add supplier information to your inventory management system.
+                </p>
+            </div>
+
+
+            <form id="supplierForm">
+
+                <input
+                    type="hidden"
+                    id="supplierId"
+                >
+
+
+                <div class="form-grid">
+
+                    <!-- COMPANY NAME -->
+                    <div class="form-group">
+
+                        <label for="companyName">
+                            Company / Supplier Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="companyName"
+                            placeholder="Enter company name"
+                            maxlength="100"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- CONTACT PERSON -->
+                    <div class="form-group">
+
+                        <label for="contactPerson">
+                            Contact Person
+                        </label>
+
+                        <input
+                            type="text"
+                            id="contactPerson"
+                            placeholder="Enter contact person's name"
+                            maxlength="100"
+                        >
+
+                    </div>
+
+
+                    <!-- PHONE -->
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number *
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Enter phone number"
+                            maxlength="25"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="example@email.com"
+                            maxlength="120"
+                        >
+
+                    </div>
+
+
+                    <!-- TAX NUMBER -->
+                    <div class="form-group">
+
+                        <label for="taxNumber">
+                            PAN / VAT Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="taxNumber"
+                            placeholder="Enter PAN or VAT number"
+                            maxlength="50"
+                        >
+
+                    </div>
+
+
+                    <!-- STATUS -->
+                    <div class="form-group">
+
+                        <label for="status">
+                            Supplier Status
+                        </label>
+
+                        <select id="status">
+
+                            <option value="active">
+                                Active
+                            </option>
+
+                            <option value="inactive">
+                                Inactive
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- ADDRESS -->
+                    <div class="form-group full-width">
+
+                        <label for="address">
+                            Supplier Address
+                        </label>
+
+                        <textarea
+                            id="address"
+                            rows="3"
+                            maxlength="300"
+                            placeholder="Enter supplier address"
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- NOTES -->
+                    <div class="form-group full-width">
+
+                        <label for="notes">
+                            Additional Notes
+                        </label>
+
+                        <textarea
+                            id="notes"
+                            rows="3"
+                            maxlength="500"
+                            placeholder="Additional supplier information..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FORM BUTTONS -->
+                <div class="form-buttons">
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                        id="saveSupplierButton"
+                    >
+                        💾 Save Supplier
+                    </button>
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        id="resetSupplierButton"
+                    >
+                        Clear Form
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- SUPPLIER LIST -->
+        <section class="supplier-list-section">
+
+            <div class="list-heading">
+
+                <div>
+                    <h2>📋 Registered Suppliers</h2>
+
+                    <p>
+                        View, edit, and manage your registered suppliers.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- SEARCH AND FILTER -->
+            <div class="filter-container">
+
+                <input
+                    type="search"
+                    id="supplierSearch"
+                    placeholder="Search supplier, phone or email..."
+                >
+
+
+                <select id="supplierFilter">
+
+                    <option value="all">
+                        All Suppliers
+                    </option>
+
+                    <option value="active">
+                        Active Suppliers
+                    </option>
+
+                    <option value="inactive">
+                        Inactive Suppliers
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- TABLE -->
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>No.</th>
+                            <th>Supplier ID</th>
+                            <th>Company Name</th>
+                            <th>Contact Person</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Total Purchases</th>
+                            <th>Total Paid</th>
+                            <th>Outstanding Due</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="supplierTable">
+
+                        <!-- Supplier records loaded by JavaScript -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <p
+                id="emptyMessage"
+                class="empty-message"
+                hidden
+            >
+                No suppliers found.
+            </p>
+
+        </section>
+
+
+        <!-- SUPPLIER DETAILS -->
+        <section
+            class="supplier-details-section"
+            id="supplierDetailsSection"
+            hidden
+        >
+
+            <div class="details-heading">
+
+                <div>
+                    <h2>📊 Supplier Account Details</h2>
+
+                    <p id="supplierDetailsName">
+                        Supplier Information
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    id="closeDetailsButton"
+                    class="secondary-btn"
+                >
+                    ✖ Close
+                </button>
+
+            </div>
+
+
+            <!-- ACCOUNT SUMMARY -->
+            <div class="supplier-account-grid">
+
+                <div class="account-card">
+
+                    <p>Total Purchases</p>
+
+                    <h3 id="supplierAccountTotal">
+                        Rs. 0.00
+                    </h3>
+
+                </div>
+
+
+                <div class="account-card">
+
+                    <p>Total Paid</p>
+
+                    <h3 id="supplierAccountPaid">
+                        Rs. 0.00
+                    </h3>
+
+                </div>
+
+
+                <div class="account-card">
+
+                    <p>Outstanding Due</p>
+
+                    <h3 id="supplierAccountDue">
+                        Rs. 0.00
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- PAYMENT HISTORY -->
+            <div class="supplier-purchase-history">
+
+                <h3>🧾 Purchase History</h3>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Purchase ID</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Unit Cost</th>
+                                <th>Total</th>
+                                <th>Paid</th>
+                                <th>Due</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="supplierPurchaseTable">
+
+                            <!-- Purchase records loaded by JavaScript -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <p
+                    id="supplierPurchaseEmpty"
+                    class="empty-message"
+                    hidden
+                >
+                    No purchases recorded for this supplier.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="./supplier.js"></script>
+
+</body>
+
+</html>

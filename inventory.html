@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inventory | IMS</title>
+
+    <link rel="stylesheet" href="./inventory.css">
+</head>
+
+<body>
+
+<header>
+    <h2>Inventory Management</h2>
+
+    <div class="header-buttons">
+        <button class="back-btn"
+            onclick="location.href='dashboard.html'">
+            ⬅ Dashboard
+        </button>
+
+        <button class="logout"
+            onclick="logout()">
+            Logout
+        </button>
+    </div>
+</header>
+
+<!-- TOP ACTION BUTTONS -->
+
+<div class="top-actions">
+
+    <a href="inventory.html" id="allProductsBtn"
+       class="top-btn">
+        All Products
+    </a>
+
+    <a href="inventory.html?low_stock=1"
+       id="lowStockBtn"
+       class="top-btn">
+        ⚠ Low Stock Only
+    </a>
+
+</div>
+
+<!-- SUMMARY CARDS -->
+
+<div class="cards">
+
+    <div class="card blue">
+        <h3>Total Products</h3>
+        <h2 id="totalProducts">0</h2>
+    </div>
+
+    <div class="card green">
+        <h3>Total Stock</h3>
+        <h2 id="totalStock">0</h2>
+    </div>
+
+    <div class="card red">
+        <h3>Low Stock Items</h3>
+        <h2 id="lowStockCount">0</h2>
+    </div>
+
+</div>
+
+<!-- DEPARTMENT FILTER -->
+
+<div class="filter-container">
+
+    <label for="departmentFilter">
+        Filter by Department:
+    </label>
+
+    <select id="departmentFilter">
+        <option value="">All Departments</option>
+    </select>
+
+</div>
+
+<!-- INVENTORY TABLE -->
+
+<div class="table-container">
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Department</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="inventoryTable">
+
+        </tbody>
+
+    </table>
+
+    <div id="emptyMessage" class="empty-message">
+        No products found.
+    </div>
+
+</div>
+
+<script src="./inventory.js"></script>
+
+</body>
+</html>

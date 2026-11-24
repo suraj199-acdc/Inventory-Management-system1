@@ -1,0 +1,373 @@
+
+/* =================================
+   GLOBAL STYLES
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: linear-gradient(
+        -45deg,
+        #667eea,
+        #764ba2,
+        #42a5f5,
+        #7b1fa2
+    );
+
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+/* =================================
+   NAVIGATION BAR
+================================= */
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 50px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+
+    z-index: 1000;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+nav h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+nav button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+/* NAV BUTTONS */
+
+.signup {
+    background: #00c853;
+    color: white;
+}
+
+.signup:hover {
+    background: #00e676;
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+}
+
+.login {
+    background: #ffab00;
+    color: white;
+}
+
+.login:hover {
+    background: #ffc400;
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+}
+
+/* =================================
+   HERO SECTION
+================================= */
+
+.hero {
+    margin-top: 180px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    animation: fadeIn 1.2s ease forwards;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.4);
+}
+
+.hero-icon {
+    font-size: 55px;
+    display: inline-block;
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 10px rgba(0,0,0,0.3);
+}
+
+/* =================================
+   MODAL
+================================= */
+
+.modal {
+    display: none;
+    position: fixed;
+
+    width: 100%;
+    height: 100%;
+
+    top: 0;
+    left: 0;
+
+    background: rgba(0,0,0,0.6);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 2000;
+    padding: 15px;
+}
+
+.modal-box {
+    background: rgba(255,255,255,0.13);
+
+    border-radius: 20px;
+    padding: 35px 30px;
+
+    width: 100%;
+    max-width: 380px;
+
+    text-align: center;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+
+    animation: modalFade 0.4s ease forwards;
+
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-box h3 {
+    margin-bottom: 20px;
+    color: white;
+    font-size: 24px;
+}
+
+/* =================================
+   INPUT FIELDS
+================================= */
+
+.modal-box input:not([type="checkbox"]) {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+
+    border-radius: 12px;
+    border: none;
+    outline: none;
+
+    background: rgba(255,255,255,0.15);
+    color: white;
+
+    font-size: 14px;
+}
+
+.modal-box input::placeholder {
+    color: rgba(255,255,255,0.8);
+}
+
+.modal-box input:focus {
+    background: rgba(255,255,255,0.25);
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+
+/* =================================
+   FORM BUTTONS
+================================= */
+
+.modal-box button {
+    width: 100%;
+    padding: 14px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #667eea;
+    color: white;
+
+    margin-top: 15px;
+
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.modal-box button:hover {
+    background: #5368d5;
+    transform: translateY(-2px);
+}
+
+.modal-box .close {
+    background: #ff5252;
+}
+
+.modal-box .close:hover {
+    background: #e53935;
+}
+
+/* =================================
+   SHOW PASSWORD
+================================= */
+
+.show-pass {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+
+    margin: 8px 0 12px;
+
+    color: white;
+    font-size: 14px;
+}
+
+.show-pass input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+/* =================================
+   ERROR AND SUCCESS
+================================= */
+
+.error {
+    color: #ffb4b4;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.success {
+    color: #b9ffca;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.error:empty,
+.success:empty {
+    display: none;
+}
+
+/* =================================
+   ANIMATIONS
+================================= */
+
+@keyframes floatIcon {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes modalFade {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* =================================
+   RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 600px) {
+
+    nav {
+        padding: 15px;
+    }
+
+    nav h1 {
+        font-size: 1.4rem;
+    }
+
+    nav button {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+
+    .hero {
+        margin-top: 150px;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .hero-icon {
+        font-size: 40px;
+    }
+}

@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | IMS</title>
+
+    <link rel="stylesheet" href="./dashboard.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <h2 id="welcomeMessage">Welcome to IMS</h2>
+
+        <button class="logout-btn" onclick="logout()">
+            <span>➜</span> Logout
+        </button>
+    </header>
+
+    <!-- LOW STOCK ALERT -->
+    <div
+        class="low-stock-bar safe"
+        id="lowStockBar"
+        onclick="openPage('purchase.html')"
+    >
+        <span class="stock-icon" id="stockIcon">✓</span>
+
+        <div class="low-text" id="lowStockText">
+            Checking stock information...
+        </div>
+    </div>
+
+    <!-- DASHBOARD STATISTICS -->
+    <section class="stats-container">
+
+        <div class="stat-card">
+            <span>📦</span>
+            <h3>Total Products</h3>
+            <p id="totalProducts">0</p>
+        </div>
+
+        <div class="stat-card">
+            <span>💰</span>
+            <h3>Total Sales</h3>
+            <p id="totalSales">Rs. 0.00</p>
+        </div>
+
+        <div class="stat-card">
+            <span>🛒</span>
+            <h3>Total Purchases</h3>
+            <p id="totalPurchases">Rs. 0.00</p>
+        </div>
+
+        <div class="stat-card">
+            <span>⚠️</span>
+            <h3>Low Stock Items</h3>
+            <p id="lowStockCount">0</p>
+        </div>
+
+    </section>
+
+    <!-- DASHBOARD MENU -->
+    <main class="container">
+
+        <a href="sales.html" class="card">
+            <span>💵</span>
+            <p>Sales</p>
+        </a>
+
+        <a href="purchase.html" class="card">
+            <span>🛒</span>
+            <p>Purchase</p>
+        </a>
+
+        <a href="inventory.html" class="card">
+            <span>📦</span>
+            <p>Manage Inventory</p>
+        </a>
+
+        <a href="add_product.html" class="card">
+            <span>➕</span>
+            <p>Add Product</p>
+        </a>
+
+        <a href="reports.html" class="card">
+            <span>📊</span>
+            <p>Reports</p>
+        </a>
+
+        <a href="credit.html" class="card">
+    <span>💳</span>
+    <p>Credits & Payments</p>
+</a>
+<a href="suppliers.html" class="card">
+
+    <span>🏭</span>
+
+    <p>Supplier Management</p>
+
+</a>
+<a href="customers.html" class="card">
+
+    <span>👥</span>
+
+    <p>Customer Management</p>
+
+</a>
+ <a href="staff.html" class="card">
+    <span>👨🏻‍💻</span>
+    <p>Staff</p>
+</a>
+
+
+        <a href="manage-profile.html" class="card">
+    <span>👤</span>
+    <p>Profile</p>
+</a>
+
+    </main>
+
+    <footer>
+        <p>Inventory Management System | Single User</p>
+    </footer>
+
+    <script src="./dashboard.js"></script>
+
+</body>
+</html>

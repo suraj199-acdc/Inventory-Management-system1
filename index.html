@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IMS Portal | Inventory Management System</title>
+
+    <!-- CSS FILE -->
+   <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <nav>
+        <h1>IMS Portal</h1>
+
+        <div class="nav-buttons">
+            <button class="signup" onclick="openModal('signup')">
+                ✚ Sign Up
+            </button>
+
+            <button class="login" onclick="openModal('login')">
+                ➜ Login
+            </button>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <h2>
+            <span class="hero-icon">📦</span>
+            Smart Inventory Management
+        </h2>
+
+        <p>Manage your stock, sales & purchases with ease 🚀</p>
+    </main>
+
+    <!-- SIGNUP -->
+    <div class="modal" id="signup">
+        <div class="modal-box">
+
+            <h3>Create Account</h3>
+
+            <p class="error" id="signupError"></p>
+            <p class="success" id="signupSuccess"></p>
+
+            <form id="signupForm">
+
+                <input type="text" id="signupName"
+                    placeholder="Full Name" required>
+
+                <input type="email" id="signupEmail"
+                    placeholder="Email" required>
+
+                <input type="tel" id="signupPhone"
+                    placeholder="Phone Number">
+
+                <input type="password" id="signupPassword"
+                    placeholder="Password" required minlength="6">
+
+                <input type="password" id="signupCPassword"
+                    placeholder="Confirm Password" required>
+
+                <label class="show-pass">
+                    <input type="checkbox"
+                        onchange="togglePassword('signupPassword','signupCPassword')">
+                    Show Password
+                </label>
+
+                <button type="submit">Create Account</button>
+
+            </form>
+
+            <button class="close"
+                onclick="closeModal('signup')">
+                Close
+            </button>
+
+        </div>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="modal" id="login">
+        <div class="modal-box">
+
+            <h3>Login to IMS</h3>
+
+            <p class="error" id="loginError"></p>
+            <p class="success" id="loginSuccess"></p>
+
+            <form id="loginForm">
+
+                <input type="email" id="loginEmail"
+                    placeholder="Email" required>
+
+                <input type="password" id="loginPassword"
+                    placeholder="Password" required>
+
+                <label class="show-pass">
+                    <input type="checkbox"
+                        onchange="togglePassword('loginPassword')">
+                    Show Password
+                </label>
+
+                <button type="submit">Login</button>
+
+            </form>
+
+            <button class="close"
+                onclick="closeModal('login')">
+                Close
+            </button>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="./app.js"></script>
+
+</body>
+</html>
